@@ -1,45 +1,57 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.Arrays;
+import java.util.Scanner;
 
-/**
- *
- * @author js0899490
- */
-public class Deck {
+public class CardGame {
+
     public static void main(String[] args) {
-        String[] SUITS = {
-            "Clubs", "Diamonds", "Hearts", "Spades"
-        };
+        Scanner sc = new Scanner(System.in);
+        String[] deck = getDeck();
+        shuffleDeck(deck);
+        int count = 1;
+        System.out.println("Enter player 1 name: ");
+        String Player1 = sc.nextLine();
+        String[] hand = dealCards(deck, count);
+        shuffleDeck(deck);
+        String[] hand2 = dealCards(deck, count);
+        displayCards(hand);
+        displayCards(hand2);
+    }
 
-        String[] RANKS = {
-            "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "Jack", "Queen", "King", "Ace"
-        };
+  private static String[] getDeck() {
+        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
+        String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", 
+            "8", "9", "10", "Jack", "Queen", "King"};        
 
-        // initialize deck
-        int n = SUITS.length * RANKS.length;
-        String[] deck = new String[n];
-        for (int i = 0; i < RANKS.length; i++) {
-            for (int j = 0; j < SUITS.length; j++) {
-                deck[SUITS.length*i + j] = RANKS[i] + " of " + SUITS[j];
+        String[] deck = new String[52];
+        int i = 0;
+        for (String suit : suits) {
+            for (String rank : ranks) {
+                deck[i] = rank + " of " + suit;
+                i++;
             }
         }
+        return deck;
+    }
 
-        // shuffle
-        for (int i = 0; i < n; i++) {
-            int r = i + (int) (Math.random() * (n-i));
-            String temp = deck[r];
-            deck[r] = deck[i];
-            deck[i] = temp;
+    private static void displayCards(String[] cards) {
+        System.out.print("|");        
+        for (String card : cards) {
+            System.out.print(card + "|");
         }
+        System.out.println();        
+    }
 
-        // print shuffled deck
-        for (int i = 0; i < n; i++) {
-            System.out.println(deck[i]);
+    private static void shuffleDeck(String[] deck) {
+        for (int i = 0; i < deck.length; i++) {
+            String savedCard = deck[i];
+            int randomIndex = (int) (Math.random() * deck.length-1);
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = savedCard;
         }
     }
 
+    private static String[] dealCards(String[] deck, int count) {
+        String[] hand = Arrays.copyOfRange(deck, 0, count);
+        return hand;
+    }
 }
