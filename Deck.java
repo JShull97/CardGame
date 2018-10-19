@@ -30,23 +30,26 @@ public class CardGame { //Check me before running
         checkWinner(Player1,Player2,hand,hand2);
     }
 
-  private static String[] getDeck() {
+   private static String[] getDeck() {
         String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", 
             "8", "9", "10", "Jack", "Queen", "King"};        
 
         String[] deck = new String[52]; 
         int i = 0;
-        boolean idx = false;            // Added a while loop that
-        while (idx == false){           // We tried to make today.
+        int idx = 0;
+        boolean test = false;            // Added a while loop that
+        while (test == false){           // We tried to make today.
             for (String rank : ranks) { // Now it fills all 52 positions
                 deck[i] = rank;         // With cards.
                 i++;
+                idx++;
             }
-            if (i == deck.length){
-                idx = true;
+            if (i == ranks.length - 1){
+                i = 0;
             }
-        
-        
+            if (idx == deck.length){
+                test = true;
+            }
         }
         return deck;
     }
