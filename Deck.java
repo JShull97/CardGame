@@ -6,6 +6,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^Replace the placeholders!
 
 /* Feel free to add or delete anything, just make sure it will work by next Tue */
+/* Please check for errors and let me know if you will find any */
 
 import java.util.Arrays;
 import java.util.Scanner;
