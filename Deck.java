@@ -1,3 +1,8 @@
+// Name: Hi-Lo Card Game
+// Developers: Stan Razumov, placeholder, placeholder
+// Date: placeholder
+// Purpose: placeholder
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -8,27 +13,36 @@ public class CardGame {
         String[] deck = getDeck();
         shuffleDeck(deck);
         int count = 1;
-        System.out.println("Enter player 1 name: ");
+        System.out.println("Enter Player 1 Name: ");
         String Player1 = sc.nextLine();
         String[] hand = dealCards(deck, count);
-        shuffleDeck(deck);
-        String[] hand2 = dealCards(deck, count);
+        
+        System.out.println("Enter Player 2 Name: ");
+        String Player2 = sc.nextLine();             // You may add datatype handlers
+        shuffleDeck(deck);                          // if you want to.
+        String[] hand2 = dealCards(deck, count);    
         displayCards(hand);
         displayCards(hand2);
+        checkWinner(Player1,Player2,hand,hand2);
     }
 
   private static String[] getDeck() {
-        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
         String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", 
             "8", "9", "10", "Jack", "Queen", "King"};        
 
-        String[] deck = new String[52];
+        String[] deck = new String[52]; 
         int i = 0;
-        for (String suit : suits) {
-            for (String rank : ranks) {
-                deck[i] = rank + " of " + suit;
+        boolean idx = false;            // Added a while loop that
+        while (idx == false){           // We tried to make today.
+            for (String rank : ranks) { // Now it fills all 52 positions
+                deck[i] = rank;         // With cards.
                 i++;
             }
+            if (i == deck.length){
+                idx = true;
+            }
+        
+        
         }
         return deck;
     }
@@ -54,4 +68,23 @@ public class CardGame {
         String[] hand = Arrays.copyOfRange(deck, 0, count);
         return hand;
     }
+    private static void checkWinner(String Player1, String Player2,String[] hand, String[] hand2){
+        String[] ranks = {"2", "3", "4", "5", "6", "7",         //Didn't bother much with passing arrays
+            "8", "9", "10", "Jack", "Queen", "King", "Ace"};    //Just copied ranks so I could compare the indexes
+        String playerOneHand = hand[0];
+        String playerTwoHand = hand2[0];
+        int p1 = java.util.Arrays.asList(ranks).indexOf(playerOneHand);
+        int p2 = java.util.Arrays.asList(ranks).indexOf(playerTwoHand);
+        if (p1 > p2){
+            System.out.println(Player1 + " Wins, He Has a Higher Card!");
+        }
+        if (p1 < p2){
+            System.out.println(Player2 + " Wins, He Has a Higher Card!");
+        }
+        if (p1 == p2) {
+            System.out.println("Draw! Try Again!");
+        }
+        
+    }
 }
+    
