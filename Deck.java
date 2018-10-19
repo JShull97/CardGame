@@ -3,6 +3,10 @@
 // Date: placeholder
 // Purpose: placeholder
 
+//^^^^^^^^^^^^^^^^^^^^^^^^Replace the placeholders!
+
+/* Feel free to add or delete anything, just make sure it will work by next Tue */
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -70,7 +74,7 @@ public class CardGame {
     }
     private static void checkWinner(String Player1, String Player2,String[] hand, String[] hand2){
         String[] ranks = {"2", "3", "4", "5", "6", "7",         //Didn't bother much with passing arrays
-            "8", "9", "10", "Jack", "Queen", "King", "Ace"};    //Just copied ranks so I could compare the indexes
+            "8", "9", "10", "Jack", "Queen", "King", "Ace"};    //Just copied ranks array so I could compare the indexes
         String playerOneHand = hand[0];
         String playerTwoHand = hand2[0];
         int p1 = java.util.Arrays.asList(ranks).indexOf(playerOneHand);
