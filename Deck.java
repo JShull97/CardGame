@@ -10,7 +10,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class CardGame {
+public class CardGame { //Check me before running
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
