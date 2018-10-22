@@ -1,7 +1,7 @@
 // Name: Hi-Lo Card Game
-// Developers: Stan Razumov, placeholder, placeholder
-// Date: placeholder
-// Purpose: placeholder
+// Developers: Stan Razumov, Justin Shull, placeholder
+// Date: 10/22/18
+// Purpose: Play a game of Hi-Lo
 
 //^^^^^^^^^^^^^^^^^^^^^^^^Replace the placeholders!
 
@@ -14,10 +14,14 @@ import java.util.Scanner;
 public class CardGame { //Check me before running
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+        String endGame = "y";
+        while ("y".equalsIgnoreCase(endGame)){      //loop to prompt to play again
         String[] deck = getDeck();
         shuffleDeck(deck);
         int count = 1;
+        
         System.out.println("Enter Player 1 Name: ");
         String Player1 = sc.nextLine();
         String[] hand = dealCards(deck, count);
@@ -26,9 +30,17 @@ public class CardGame { //Check me before running
         String Player2 = sc.nextLine();             // You may add datatype handlers
         shuffleDeck(deck);                          // if you want to.
         String[] hand2 = dealCards(deck, count);    
-        displayCards(hand);
-        displayCards(hand2);
+        displayCards(hand, Player1);                //added player names to draw printline
+        displayCards(hand2, Player2);
         checkWinner(Player1,Player2,hand,hand2);
+        System.out.println("Play again? y/n");
+        endGame = sc.nextLine();
+        
+        if (!(endGame == "y") || !(endGame == "n")) {   //input validation 
+            System.out.println("Enter y or n ");
+            endGame = sc.nextLine();
+            }
+        }  
     }
 
    private static String[] getDeck() {
@@ -55,8 +67,8 @@ public class CardGame { //Check me before running
         return deck;
     }
 
-    private static void displayCards(String[] cards) {
-        System.out.print("|");        
+    private static void displayCards(String[] cards, String player) {
+        System.out.print(player + " drew |");        
         for (String card : cards) {
             System.out.print(card + "|");
         }
@@ -94,5 +106,5 @@ public class CardGame { //Check me before running
         }
         
     }
+
 }
-    
